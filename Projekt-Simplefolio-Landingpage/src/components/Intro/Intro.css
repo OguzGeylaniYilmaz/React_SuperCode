@@ -1,0 +1,20 @@
+.intro {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+}
+
+h1,h2 {
+  color: #cdcdff;
+}
+h1 span {
+  color: #90a0d9;
+}
+
+p{
+    display: block;
+    width: 760px;
+    color: #bdbddd;
+    text-align: center;
+}

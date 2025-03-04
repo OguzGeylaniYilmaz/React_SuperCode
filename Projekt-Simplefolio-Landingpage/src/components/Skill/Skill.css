@@ -1,0 +1,23 @@
+
+section {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    flex-direction: column;
+    padding-top: 50px;
+
+}
+
+.skill-list {
+    margin-top: 20px;
+    display: grid;
+    grid-template-columns: repeat(4, 1fr);
+    column-gap: 60px;
+    width: max-content;
+    border-radius: 10px;
+    
+}
+
+.skill-list button {
+    background-color: #22243a;
+}
