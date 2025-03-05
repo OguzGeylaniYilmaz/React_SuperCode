@@ -1,0 +1,17 @@
+
+
+.footer-container {
+    margin-top: 6rem;
+    margin-bottom: 4rem;
+    display: flex;
+    justify-content: space-around;
+ 
+}
+
+.footer-container div {
+    width: 240px;
+    height: 80px;
+    background-color: #f3f4f6;
+    padding: 6px 8px 6px 8px;
+    
+}

@@ -1,0 +1,28 @@
+header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+
+  margin-top: 10px;
+}
+
+.middle {
+  display: flex;
+  column-gap: 1.5rem;
+}
+
+.right {
+  display: flex;
+  column-gap: 1.5rem;
+  padding-right: 1rem;
+}
+
+h2{
+    letter-spacing: 1px;
+    padding-left: 6px;
+}
+
+a {
+  text-decoration-line: none;
+  color: #848484;
+}
