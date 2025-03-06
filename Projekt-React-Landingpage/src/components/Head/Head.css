@@ -1,0 +1,64 @@
+.Intro {
+  text-align: center;
+  padding: 20px;
+  font-family: Arial, sans-serif;
+  background-color: green;
+}
+
+.header h1 {
+  font-size: 70px;
+  color: white;
+  margin-bottom: 10px;
+}
+
+.header h3 {
+  margin-top: 4rem;
+  font-weight: bold;
+  font-size: 20px;
+  font-size: xx-large;
+}
+
+.line {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  background-color: white;
+  margin: 0 550px 0 550px;
+  height: 1px;
+
+  margin-bottom: 30px;
+}
+
+.vertical-line {
+  background-color: white;
+  height: 120px;
+  width: 1px;
+}
+
+.header p {
+  font-size: 1rem;
+  line-height: 2;
+  max-width: 950px;
+  margin: 0 auto 40px;
+}
+
+.stats {
+  display: flex;
+  justify-content: space-around;
+  margin-top: 40px;
+}
+
+.stat-item {
+  text-align: center;
+}
+
+.stat-item h1 {
+  margin-bottom: 10px;
+  font-size: 60px;
+  color: white;
+}
+
+.stat-item p {
+  font-size: 1rem;
+  font-weight: bold;
+}

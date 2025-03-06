@@ -1,0 +1,37 @@
+.first-container {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+
+.first-container h3 {
+  margin-top: 3rem;
+  color: green;
+  font-size: x-large;
+  font-weight: bolder;
+}
+
+.first-container h1 {
+  text-align: center;
+  font-size: 46px;
+  margin-bottom: 3rem;
+}
+
+.second-container {
+  display: grid;
+  grid-template-columns: 0fr 2fr 0fr 2fr;
+  column-gap: 100px;
+}
+
+.second-container div {
+  padding: 20px;
+}
+
+.second-container p {
+    line-height: 30px;
+    padding-right: 50px;
+}
+
+.second-container img{
+    max-width: 100%;
+}

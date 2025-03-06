@@ -1,0 +1,26 @@
+
+.item-list {
+    display: grid;
+    grid-template-columns: repeat(4,1fr);
+    text-align: center;
+    gap:20px;
+}
+
+.item-list img {
+    width: 100%;
+    height: 250px;
+}
+
+.item-list h2{
+    color:red;
+    padding-top: 20px;
+    padding-bottom: 20px;
+}
+
+.item-list p {
+    padding-left: 2rem;
+    padding-bottom: 1rem;
+    font-weight: 500;
+    font-size: 16px;
+}
+
