@@ -1,0 +1,39 @@
+.footer {
+  background-color: #0f264c;
+
+  margin-top: 70rem;
+  width: 90rem;
+  height: 41.25rem;
+  border-top-right-radius: 6.25rem;
+}
+
+.footer img {
+  margin-top: -10rem;
+}
+
+.footer-text {
+  width: 806px;
+  border-left: 10px #ee4d47 solid;
+  height: 160px;
+  margin: 100px 0 0 240px;
+}
+
+.footer-text p {
+  display: inline-block;
+  height: 140px;
+  width: 330px;
+  color: white;
+  font-family: "Rubik";
+  padding: 10px 0 10px 40px;
+
+  font-size: 20px;
+  line-height: 30px;
+}
+
+.nav {
+  display: flex;
+}
+
+.nav img {
+  max-width: 100%;
+}

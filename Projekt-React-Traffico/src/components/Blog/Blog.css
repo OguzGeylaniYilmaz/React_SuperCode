@@ -1,36 +1,35 @@
-
 .articles {
-    display: grid;
-    grid-template-columns: repeat(3,1fr);
-    gap: 10px;
-    text-align: center;
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 10px;
+  text-align: center;
 }
 
-.articles div{
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-    justify-content: center;
-    gap: 10px;
+.articles div {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  gap: 20px;
+  padding: 2rem;
 }
-
 
 .articles img {
-    max-width: 100%;
-    height: 300px;
-    border-radius: 10%;
+  max-width: 100%;
+  height: 250px;
+  border-radius: 10%;
 }
 
-.articles h2{
-    color: #ed4d47;
-    margin-top: 2rem;
-    font-size: 26px;
+.articles h2 {
+  color: #ed4d47;
+  margin-top: 2rem;
+  font-size: 26px;
 }
 
-.articles p{
-    font-size: 18px;
+.articles p {
+  font-size: 18px;
 }
 
-.articles span{
-    font-weight: bolder;
+.articles span {
+  font-weight: bolder;
 }

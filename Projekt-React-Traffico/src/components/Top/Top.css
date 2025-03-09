@@ -1,5 +1,5 @@
 header {
-  background-image: url("../../assets/images/Scene.png");
+  background-image: url("../../assets/images/Hero.png");
 
   background-repeat: no-repeat;
   background-size: cover;
@@ -27,7 +27,7 @@ header {
   background-position: center;
   background-repeat: no-repeat;
   background-size: cover;
-  height: 30px;
+  height: 4 0px;
 }
 
 nav {
@@ -62,7 +62,7 @@ a {
 }
 
 .intro p {
-  font-size: 100px;
+  font-size: 90px;
   color: white;
   font-weight: bold;
   padding-top: 60px;
@@ -89,7 +89,7 @@ a {
 }
 
 .btn {
-  background-color:  #EE4D47;
+  background-color: #ee4d47;
   color: white;
   width: 160px;
   height: 60px;

@@ -1,5 +1,6 @@
 import AboutUs from "../../components/AboutUs/AboutUs";
 import Blog from "../../components/Blog/Blog";
+import Footer from "../../components/Footer/Footer";
 import Top from "../../components/Top/Top";
 
 const Home = () => {
@@ -8,6 +9,7 @@ const Home = () => {
       <Top />
       <AboutUs />
       <Blog />
+      <Footer />
     </>
   );
 };

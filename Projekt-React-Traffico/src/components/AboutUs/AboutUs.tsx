@@ -26,7 +26,7 @@ const AboutUs = () => {
         </div>
       </div>
 
-      <HowToApply/>
+      <HowToApply />
     </section>
   );
 };

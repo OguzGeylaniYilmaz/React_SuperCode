@@ -1,5 +1,28 @@
+@font-face {
+  font-family: "DMSerifDisplay";
+  src: url("../public/fonts/DM_Serif_Display/DMSerifDisplay-Regular.ttf");
+}
+
+@font-face {
+  font-family: "Rubik";
+  src: url("../public/fonts/Rubik/Rubik-VariableFont_wght.ttf");
+}
+
 * {
   margin: 0;
   padding: 0;
   box-sizing: border-box;
+}
+
+p {
+  font-family: "Rubik";
+  color: #402b2b;
+}
+
+a {
+  font-family: "Rubik";
+}
+
+button {
+  font-family: "Rubik ";
 }
