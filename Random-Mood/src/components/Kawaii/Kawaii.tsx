@@ -27,10 +27,10 @@ function App() {
   };
 
   return (
-    <>
+    <div>
       <Planet size={300} mood={mood} color="#FDA7DC" />
       <button onClick={handleClick}>Random Mood</button>
-    </>
+    </div>
   );
 }
 
