@@ -1,0 +1,17 @@
+body {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+div {
+  height: 300px;
+  background-color: aqua;
+}
+
+input[type="text"] {
+  padding: 8px;
+  border-radius: 50px;
+  border: 1px solid gray;
+  width: 200px;
+}
