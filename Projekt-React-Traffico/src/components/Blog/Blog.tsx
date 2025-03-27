@@ -1,5 +1,5 @@
 import BlogItem from "../BlogItems/BlogItems";
-import './Blog.css';
+import "./Blog.css";
 
 type BlogArtice = {
   id: number;
@@ -19,7 +19,7 @@ const blogArticles: BlogArtice[] = [
     content:
       "Discover effective strategies to reduce congestion and improve traffic efficiency in busy cities.",
     imageUrl:
-      "https://images.unsplash.com/photo-1519994007676-baabab4bf574?q=80&w=2992&auto=format&fit=crop&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D",
+      "https://images.timesproperty.com/blog/7975/Comparison_Of_Urban_Suburban_And_Rural_Residential_Areas.jpg",
   },
   {
     id: 2,
@@ -134,23 +134,22 @@ const blogArticles: BlogArtice[] = [
 ];
 
 const Blog = () => {
-
-  return(
-  <section className="articles">
-    {blogArticles.map((singleItems) => {
-      return (
-        <BlogItem
-          key={singleItems.id}
-          blogImage={singleItems.imageUrl}
-          blogTitle={singleItems.title}
-          blogContent={singleItems.content}
-          blogDate={singleItems.date}
-          blogAuthor={singleItems.author}
-        ></BlogItem>
-      );
-    })}
-  </section>
-  )
+  return (
+    <section className="articles">
+      {blogArticles.map((singleItems) => {
+        return (
+          <BlogItem
+            key={singleItems.id}
+            blogImage={singleItems.imageUrl}
+            blogTitle={singleItems.title}
+            blogContent={singleItems.content}
+            blogDate={singleItems.date}
+            blogAuthor={singleItems.author}
+          ></BlogItem>
+        );
+      })}
+    </section>
+  );
 };
 
 export default Blog;

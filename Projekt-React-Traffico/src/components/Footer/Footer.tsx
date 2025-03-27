@@ -1,5 +1,6 @@
 import "./Footer.css";
 import Trekmobil from "../../assets/images/Group35.png";
+import logo from "../../assets/images/logo.png";
 
 const Footer = () => {
   return (
@@ -12,7 +13,19 @@ const Footer = () => {
         </p>
         {/* <PrimaryButton /> */}
       </div>
-      <div className="nav"></div>
+
+      <div className="footer-nav">
+        <div className="footer-logo">
+          <img src={logo} />
+        </div>
+        <div className="footer-menu">
+          <nav>
+            <a href="#about">About</a>
+            <a href="#howto">How To</a>
+            <a href="#faqs">Faqs</a>
+          </nav>
+        </div>
+      </div>
     </section>
   );
 };
