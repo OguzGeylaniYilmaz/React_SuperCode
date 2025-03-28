@@ -1,0 +1,27 @@
+.day-night {
+  height: 100vh;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  flex-direction: column;
+  transition: background-color 0.3s, color 0.3s;
+}
+
+.day {
+  background-color: white;
+  color: black;
+}
+
+.night {
+  background-color: black;
+  color: white;
+}
+
+button {
+  padding: 12px;
+  border-radius: 10px;
+}
+
+h1 {
+  font-size: 60px;
+}
