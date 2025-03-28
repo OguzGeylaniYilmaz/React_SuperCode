@@ -1,0 +1,33 @@
+h1 {
+  font-size: 3em;
+  font-family: "Arial", sans-serif;
+  color: white;
+}
+
+.account {
+  background-color: #5dade2;
+  padding: 20px;
+  border-radius: 10px;
+  margin: 20px 0;
+}
+
+input {
+  padding: 10px;
+  margin: 10px;
+  border-radius: 5px;
+  border: none;
+}
+
+button {
+  padding: 10px 20px;
+  margin: 10px;
+  border-radius: 5px;
+  border: none;
+  cursor: pointer;
+  background-color: #3498db;
+  color: white;
+}
+
+button:hover {
+  background-color: #2980b9;
+}

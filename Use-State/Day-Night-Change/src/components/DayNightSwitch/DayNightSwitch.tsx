@@ -12,7 +12,7 @@ const DayNightSwitch = () => {
     <div className={`day-night ${isNight ? "night" : "day"}`}>
       <h1>{isNight ? "Night" : "Day"}</h1>
       <button onClick={toogleDayNight}>
-        {isNight ? "Change to Night" : "Change to Day"}
+        {isNight ? "Change to Day" : "Change to Night"}
       </button>{" "}
     </div>
   );
