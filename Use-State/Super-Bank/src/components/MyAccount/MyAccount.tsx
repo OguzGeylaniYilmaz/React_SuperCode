@@ -21,17 +21,18 @@ const BankAccount = () => {
   };
 
   const getKawaiiEmoji = () => {
-    if (balance > 0 && balance < 100) {
-      return <CreditCard size={240} mood="blissful" color="#A6E191" />;
-    } else if (balance >= 100 && balance < 500) {
-      return <CreditCard size={240} mood="lovestruck" color="#A6E191" />;
-    } else if (balance == 0) {
-      return <CreditCard size={240} mood="sad" color="#A6E191" />;
-    } else if (balance < 0) {
-      return <CreditCard size={240} mood="ko" color="#A6E191" />;
+    if (balance == 0) {
+      return <CreditCard size={240} mood="sad" color="#fccb7e" />;
+    } else if (balance > 0 && balance <= 1000) {
+      return <CreditCard size={240} mood="excited" color="#ffbae1" />;
+    } else if (balance > 1000 && balance < 5000) {
+      return <CreditCard size={240} mood="lovestruck" color="##add2ff" />;
+    } else if (balance >= 5000) {
+      return <CreditCard size={240} mood="happy" color="##add2ff" />;
+    } else {
+      return <CreditCard size={240} mood="shocked" color="##add2ff" />;
     }
   };
-
   return (
     <div>
       <div>{getKawaiiEmoji()}</div>
