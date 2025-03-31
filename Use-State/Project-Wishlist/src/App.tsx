@@ -14,6 +14,9 @@ const App: React.FC = () => {
   const [text, setText] = useState("");
   const [priority, setPriority] = useState<Priority>("normal");
   const [todos, setTodos] = useState<Todo[]>([]);
+  const [editingId, setEditingId] = useState<number | null>(null);
+  const [editText, setEditText] = useState("");
+  const [editPriority, setEditPriority] = useState<Priority>("normal");
 
   const handleAdd = () => {
     if (text.trim() === "") return;
@@ -40,6 +43,26 @@ const App: React.FC = () => {
     );
   };
 
+  const handleEdit = (todo: Todo) => {
+    setEditingId(todo.id);
+    setEditText(todo.text);
+    setPriority(todo.priority);
+  };
+
+  const handleUpdate = () => {
+    setTodos(
+      todos.map((todo) =>
+        todo.id === editingId
+          ? { ...todo, text: editText, priority: editPriority }
+          : todo
+      )
+    );
+
+    setEditingId(null);
+    setEditText("");
+    setEditPriority("normal");
+  };
+
   return (
     <div className="app-container">
       <h1>My Wishlist 🎄🎁</h1>
@@ -62,7 +85,6 @@ const App: React.FC = () => {
           <button onClick={handleAdd}>Add wish</button>
         </div>
       </div>
-
       <ul className="todo-list">
         {todos.map((todo) => (
           <li
@@ -71,16 +93,39 @@ const App: React.FC = () => {
               todo.completed ? "completed" : ""
             }`}
           >
-            <input
-              type="checkbox"
-              checked={todo.completed}
-              onChange={() => handleToggle(todo.id)}
-            />
-            <span>{todo.text}</span>
-            <button onClick={() => handleDelete(todo.id)}>Delete</button>
+            {editingId === todo.id ? (
+              <>
+                <input
+                  type="text"
+                  value={editText}
+                  onChange={(e) => setEditText(e.target.value)}
+                />
+                <select
+                  value={editPriority}
+                  onChange={(e) => setEditPriority(e.target.value as Priority)}
+                >
+                  <option value="low">Low</option>
+                  <option value="normal">Normal</option>
+                  <option value="high">High</option>
+                </select>
+                <button onClick={handleUpdate}>Update</button>
+              </>
+            ) : (
+              <>
+                <input
+                  type="checkbox"
+                  checked={todo.completed}
+                  onChange={() => handleToggle(todo.id)}
+                />
+                <span>{todo.text}</span>
+                <button onClick={() => handleEdit(todo)}>Edit</button>
+                <button onClick={() => handleDelete(todo.id)}>Delete</button>
+              </>
+            )}
           </li>
         ))}
       </ul>
+
       {todos.length === 0 && <p>Santa's inbox is empty!</p>}
     </div>
   );
