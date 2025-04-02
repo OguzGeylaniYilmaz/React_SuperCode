@@ -1,3 +1,4 @@
+import { useNavigate } from "react-router-dom";
 import { Product } from "../types/Product";
 
 type productProps = {
@@ -5,6 +6,8 @@ type productProps = {
 };
 
 export default function ProductCard({ product }: productProps) {
+  const navigate = useNavigate();
+
   return (
     <div className="border p-4 rounded shadow-md">
       <img
@@ -14,7 +17,12 @@ export default function ProductCard({ product }: productProps) {
       />
       <h2 className="font-semibold text-lg mb-1">{product.title} </h2>
       <p className="text-green-600 font-bold">${product.price}</p>
-      <a>Show More</a>
+      <button
+        className="text-black hover:text-red-600 border-2 p-3 mt-3"
+        onClick={() => navigate("/product-details/" + product.id)}
+      >
+        Details ansehen
+      </button>
     </div>
   );
 }
