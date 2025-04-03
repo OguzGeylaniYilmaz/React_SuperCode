@@ -1,5 +1,10 @@
 @import "tailwindcss";
 
+@font-face {
+  font-family: "Roboto";
+  src: url("./assets/fonts/Roboto/static/Roboto-Light.ttf");
+}
+
 .container {
   height: 100vh;
 }
@@ -18,7 +23,7 @@
 
 .home-title {
   height: 76px;
-  margin: 109px 160px 24px 160px;
+  margin: 79px 160px 24px 160px;
 }
 
 .home-title p {
