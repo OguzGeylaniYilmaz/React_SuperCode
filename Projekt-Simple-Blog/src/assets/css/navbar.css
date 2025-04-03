@@ -1,0 +1,30 @@
+@import "tailwindcss";
+
+* {
+  font-family: "Roboto";
+}
+
+@font-face {
+  font-family: "Roboto";
+  src: url("../fonts/Roboto/Roboto-VariableFont_wdth\,wght.ttf");
+}
+
+nav {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  height: 92px;
+}
+
+.page-links {
+  display: flex;
+  justify-content: space-between;
+  width: 140px;
+  margin-right: 96px;
+}
+
+nav h1 {
+  margin-left: 96px;
+  font-weight: 900;
+  font-size: 24px;
+}
