@@ -34,7 +34,7 @@
   font-family: "Nunito  ";
   width: 100%;
   display: flex;
-  justify-content: space-around;
+  justify-content: space-evenly;
   font-size: 16px;
   font-weight: 400;
   color: #222222bf;
