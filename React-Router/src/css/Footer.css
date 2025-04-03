@@ -5,6 +5,8 @@ footer {
 
   display: grid;
   grid-template-columns: 60% 40%;
+
+  font-family: "Nunito  ";
 }
 
 .footer-content {
@@ -50,7 +52,7 @@ footer {
 
 .author p {
   color: #8d8d8d;
-  font-size: 12px;
+  font-size: 16px;
   font-weight: 600;
 }
 

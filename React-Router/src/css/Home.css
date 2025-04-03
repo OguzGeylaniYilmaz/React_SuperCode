@@ -11,13 +11,17 @@
 }
 
 .home-info p {
+  font-family: "Nunito  ";
   font-size: 36px;
   font-weight: 400;
   color: #3e3f43;
 }
 
 .home-info h1 {
-  font-size: 72px;
+  font-size: 66px;
+  font-family: "Nunito  ";
+  width: 400px;
+  font-weight: 800;
 }
 
 .image-container {
@@ -26,9 +30,11 @@
 }
 
 .category-button {
+  margin-top: 2rem;
   background-color: #daa520;
   color: white;
   padding: 14px 24px;
+  border-radius: 10px;
 }
 
 .home-image {

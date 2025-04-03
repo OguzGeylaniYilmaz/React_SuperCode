@@ -1,4 +1,8 @@
 @import "tailwindcss";
+@font-face {
+  font-family: "Nunito", sans-serif;
+  src: url("../src/assets/fonts/Nunito/Nunito-VariableFont_wght.ttf");
+}
 
 body {
   margin: 0;

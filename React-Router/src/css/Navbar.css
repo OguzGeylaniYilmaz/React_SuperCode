@@ -27,11 +27,11 @@
   display: flex;
   justify-content: center;
   align-items: center;
-
   width: 500px;
 }
 
 .nav-container nav {
+  font-family: "Nunito  ";
   width: 100%;
   display: flex;
   justify-content: space-around;
