@@ -1,19 +1,14 @@
 import Nav from "../components/Nav";
 import "../css/About.css";
-import AboutLogo from "../assets/images/about-logo.png";
 import AboutImage from "../assets/images/About.png";
 import Footer from "../components/Footer";
+import Intro from "../components/Intro";
 
 const About = () => {
   return (
     <div>
       <Nav />
-      <div className="about-title">
-        <img src={AboutLogo} />
-        <h2>Who we are</h2>
-        <div className="horizontal-line"></div>
-        <h1>About Us</h1>
-      </div>
+      <Intro introText="Who we are" title="About Us"></Intro>
 
       <div className="about-content">
         <div className="about-image">

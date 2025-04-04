@@ -1,31 +1,33 @@
 import Nav from "../components/Nav";
-import ProductLogo from "../assets/images/about-logo.png";
 import "../css/Product.css";
 import Footer from "../components/Footer";
+import { Link } from "react-router-dom";
+import Intro from "../components/Intro";
 
 const Products = () => {
   return (
     <>
       <Nav />
-      <div className="product-title">
-        <img src={ProductLogo} />
-        <h2>What we have</h2>
-        <div className="horizontal-line"></div>
-        <h1>Products</h1>
-      </div>
+      <Intro introText="What we have" title="Products"></Intro>
 
       <div className="product-container">
         <div className="product-item">
           <p>Jenson</p>
-          <button>Shop now</button>
+          <Link to="/jenson">
+            <button className="category-button">Shop now</button>
+          </Link>
         </div>
         <div className="product-item">
           <p>Deon</p>
-          <button>Shop now</button>
+          <Link to="/deon">
+            <button className="category-button">Shop now</button>
+          </Link>
         </div>
         <div className="product-item">
           <p>Krisha</p>
-          <button>Shop now</button>
+          <Link to="/krisha">
+            <button className="category-button">Shop now</button>
+          </Link>
         </div>
       </div>
       <Footer />
