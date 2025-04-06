@@ -12,3 +12,8 @@ button {
   font-family: "Roboto";
   font-weight: 900;
 }
+
+button:hover {
+  cursor: pointer;
+  background-color: wheat;
+}

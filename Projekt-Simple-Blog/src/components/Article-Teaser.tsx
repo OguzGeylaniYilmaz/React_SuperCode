@@ -17,7 +17,10 @@ const ArticleTeaser = ({ id, title, img_url }: TeaserProps) => {
           className="w-full h-48 object-cover rounded"
         />
       </div>
-      <h2 className="text-lg font-semibold mt-2 text-center">{title}</h2>
+      <div style={{ marginTop: "15px" }}>
+        <h2 className="text-lg font-semibold mt-2 text-center">{title}</h2>
+      </div>
+
       <div>
         <Link to={`/blog/${id}`}>
           <Button className="mt-2">Read more</Button>
