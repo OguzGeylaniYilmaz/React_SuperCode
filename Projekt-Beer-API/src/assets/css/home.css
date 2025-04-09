@@ -1,0 +1,32 @@
+.home-container {
+  max-width: 800px;
+  margin: auto;
+  margin-top: 60px;
+}
+
+.all-beer-img {
+  width: 100%;
+  height: auto;
+}
+
+.beer-title {
+  background-color: #ffc940;
+  font-size: 50px;
+  font-weight: bold;
+  padding: 1rem;
+  color: white;
+}
+
+.beer-text {
+  padding: 1rem;
+  font-size: 1rem;
+  color: #333;
+  font-weight: 500;
+  font-size: 30px;
+}
+
+.random-beer-img {
+  height: 500px;
+  width: 100%;
+  object-fit: cover;
+}
