@@ -1,7 +1,7 @@
 /// <reference types="vitest" />
 
 import { describe, expect, it } from "vitest";
-import { cleanAndReverseString } from "./sum";
+import { cleanAndReverseString } from "./stringUtils.test";
 
 describe("cleanAndReverseString", () => {
   it("should reverse a clean string without special characters", () => {
