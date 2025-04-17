@@ -32,7 +32,7 @@ export default function NewsletterForm() {
           {...register("agreed")}
           type="checkbox"
           data-testid="agree-checkbox"
-        />{" "}
+        />
         I agree to receive the newsletter
       </label>
 
