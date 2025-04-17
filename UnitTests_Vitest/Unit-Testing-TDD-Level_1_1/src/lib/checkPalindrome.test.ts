@@ -1,3 +1,6 @@
+/// <reference types="vitest" />
+
+import { describe, expect, it } from "vitest";
 import { checkPalindrome } from "./checkPalindrome";
 
 // describe("checkPalindrome", () => {
@@ -9,7 +12,7 @@ import { checkPalindrome } from "./checkPalindrome";
 
 describe("checkPalindrome", () => {
   it("should return true for simple palindrome", () => {
-    expect(checkPalindrome("car")).toBe(true);
+    expect(checkPalindrome("level")).toBe(true);
   });
 
   it("return false for non-palindromes", () => {
@@ -21,7 +24,7 @@ describe("checkPalindrome", () => {
   });
 
   it("should ignore spaces and punctuation marks", () => {
-    expect(checkPalindrome("A man, a plan, a canal")).toBe(true);
+    expect(checkPalindrome("A man, a plan, a canal, Hawaii!")).toBe(true);
   });
 
   it("should return true for empty string", () => {
