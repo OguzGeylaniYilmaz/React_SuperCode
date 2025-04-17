@@ -1,0 +1,23 @@
+body form {
+  display: flex;
+  flex-direction: column;
+  width: 50%;
+  margin: auto;
+  margin-top: 100px;
+  row-gap: 20px;
+}
+
+form input {
+  padding: 8px;
+  border-radius: 10px;
+}
+
+form button {
+  width: 200px;
+  padding: 10px;
+  cursor: pointer;
+}
+
+form button:hover {
+  background-color: aqua;
+}
