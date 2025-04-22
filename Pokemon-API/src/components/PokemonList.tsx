@@ -6,7 +6,7 @@ type Props = {
   pokemons: Pokemon[];
 };
 
-const PokemonList: React.FC<Props> = ({ pokemons }) => {
+export const PokemonList: React.FC<Props> = ({ pokemons }) => {
   return (
     <div className="grid grid-cols-2 sm:grid-cols-3 md:grid-cols-4 gap-4">
       {pokemons.map((pokemon) => (
