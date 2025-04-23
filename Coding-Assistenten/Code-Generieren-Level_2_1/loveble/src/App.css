@@ -1,0 +1,66 @@
+#root {
+  width: 100%;
+  margin: 0 auto;
+}
+
+::selection {
+  background: rgba(255, 0, 255, 0.3);
+  color: white;
+}
+
+/* Custom scrollbar for the neon theme */
+::-webkit-scrollbar {
+  width: 12px;
+}
+
+::-webkit-scrollbar-track {
+  background: rgba(26, 31, 44, 0.8);
+}
+
+::-webkit-scrollbar-thumb {
+  background: linear-gradient(to bottom, #ff00ff, #00ffff);
+  border-radius: 6px;
+}
+
+::-webkit-scrollbar-thumb:hover {
+  background: linear-gradient(to bottom, #ff33ff, #33ffff);
+}
+
+/* Scanlines effect for retro feel */
+.scanlines {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  pointer-events: none;
+  z-index: 999;
+  background: linear-gradient(
+    to bottom,
+    rgba(255, 255, 255, 0.03) 50%,
+    rgba(0, 0, 0, 0.03) 50%
+  );
+  background-size: 100% 4px;
+  opacity: 0.15;
+}
+
+/* Stars background effect */
+.stars {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  pointer-events: none;
+  background-image: 
+    radial-gradient(1px 1px at 20px 30px, white, rgba(0, 0, 0, 0)),
+    radial-gradient(1px 1px at 40px 70px, white, rgba(0, 0, 0, 0)),
+    radial-gradient(1px 1px at 50px 160px, white, rgba(0, 0, 0, 0)),
+    radial-gradient(1px 1px at 90px 40px, white, rgba(0, 0, 0, 0)),
+    radial-gradient(1px 1px at 130px 80px, white, rgba(0, 0, 0, 0)),
+    radial-gradient(1px 1px at 160px 120px, white, rgba(0, 0, 0, 0));
+  background-repeat: repeat;
+  background-size: 200px 200px;
+  opacity: 0.15;
+  z-index: -1;
+}

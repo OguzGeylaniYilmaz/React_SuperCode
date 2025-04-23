@@ -1,0 +1,102 @@
+@import url('https://fonts.googleapis.com/css2?family=Orbitron:wght@400;500;700;900&family=Press+Start+2P&family=VT323&display=swap');
+
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+@layer base {
+  :root {
+    --background: 240 10% 3.9%; /* Dark background */
+    --foreground: 0 0% 98%; /* Light text */
+
+    --card: 240 10% 3.9%; /* Dark background */
+    --card-foreground: 0 0% 98%; /* Light text */
+
+    --popover: 240 10% 3.9%; /* Dark background */
+    --popover-foreground: 0 0% 98%; /* Light text */
+
+    --primary: 300 100% 50%; /* Neon Pink */
+    --primary-foreground: 0 0% 98%; /* Light text */
+
+    --secondary: 180 100% 50%; /* Neon Blue */
+    --secondary-foreground: 240 10% 3.9%; /* Dark background */
+
+    --muted: 240 10% 15%; /* Slightly lighter than background */
+    --muted-foreground: 240 5% 64.9%; /* Grey text */
+
+    --accent: 270 75% 60%; /* Purple */
+    --accent-foreground: 0 0% 98%; /* Light text */
+
+    --destructive: 0 62.8% 30.6%;
+    --destructive-foreground: 0 0% 98%;
+
+    --border: 240 10% 20%; /* Darker border */
+    --input: 240 10% 20%; /* Darker input */
+    --ring: 300 100% 50%; /* Neon pink ring */
+
+    --radius: 0.5rem;
+
+    --sidebar-background: 240 10% 3.9%;
+    --sidebar-foreground: 0 0% 98%;
+    --sidebar-primary: 300 100% 50%;
+    --sidebar-primary-foreground: 0 0% 98%;
+    --sidebar-accent: 240 10% 15%;
+    --sidebar-accent-foreground: 0 0% 98%;
+    --sidebar-border: 240 10% 20%;
+    --sidebar-ring: 300 100% 50%;
+  }
+}
+
+@layer base {
+  * {
+    @apply border-border;
+  }
+
+  body {
+    @apply bg-neon-black text-foreground antialiased selection:bg-neon-pink/30 selection:text-white overflow-x-hidden;
+    background-image: radial-gradient(circle at 50% 50%, rgba(155, 135, 245, 0.15) 0%, transparent 60%), 
+                      radial-gradient(circle at 80% 20%, rgba(255, 0, 255, 0.1) 0%, transparent 40%);
+    background-attachment: fixed;
+  }
+
+  html {
+    @apply scroll-smooth overflow-x-hidden;
+  }
+}
+
+@layer utilities {
+  .text-glow {
+    text-shadow: 0 0 5px currentColor, 0 0 10px currentColor;
+  }
+  
+  .text-glow-pink {
+    text-shadow: 0 0 5px #ff00ff, 0 0 10px #ff00ff;
+  }
+  
+  .text-glow-blue {
+    text-shadow: 0 0 5px #00ffff, 0 0 10px #00ffff;
+  }
+  
+  .neon-border-pink {
+    @apply border-neon-pink shadow-neon-pink;
+  }
+  
+  .neon-border-blue {
+    @apply border-neon-blue shadow-neon-blue;
+  }
+  
+  .neon-border-purple {
+    @apply border-neon-purple shadow-neon-purple;
+  }
+
+  .grid-pattern {
+    background-size: 40px 40px;
+    background-image: 
+      linear-gradient(to right, rgba(255, 0, 255, 0.1) 1px, transparent 1px),
+      linear-gradient(to bottom, rgba(0, 255, 255, 0.1) 1px, transparent 1px);
+  }
+  
+  .glass-card {
+    @apply bg-white/5 backdrop-blur-sm border border-white/10 shadow-lg;
+  }
+}
