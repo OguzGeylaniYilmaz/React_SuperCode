@@ -19,7 +19,7 @@ const moods: KawaiiMood[] = [
 ];
 
 function App() {
-  const [mood, setMood] = useState<KawaiiMood>("happy");
+  const [mood, setMood] = useState<KawaiiMood>("ko");
 
   const handleClick = () => {
     const randomMood = moods[Math.floor(Math.random() * moods.length)];
