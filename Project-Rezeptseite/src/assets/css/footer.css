@@ -1,0 +1,42 @@
+.footer-logo {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+
+  height: 56px;
+  width: 411px;
+}
+
+.footer-logo h2 {
+  font-weight: 600;
+  font-size: 46px;
+  margin-left: 20px;
+}
+
+.social-media-container {
+  width: 200px;
+  height: 102px;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+}
+
+.social-media-icons {
+  display: flex;
+  align-items: center;
+  justify-content: space-around;
+}
+
+.social-media-container h3 {
+  font-weight: 600;
+  font-size: 24px;
+}
+
+.social-media-icon {
+  background-color: #ffe9a1;
+  width: 44px;
+  height: 44px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}

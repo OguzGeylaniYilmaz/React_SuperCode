@@ -1,0 +1,36 @@
+import { Link } from "react-router-dom";
+import icon from "../assets/images/Ico.png";
+
+const Header = () => {
+  return (
+    <header>
+      <div className="bg-yellow-300 h-[30px]" />
+      <div className="bg-white h-[113px] px-6 md:px-12 ">
+        <div className="max-w-6xl mx-auto h-full flex items-center justify-between">
+          <div className="flex items-center gap-2">
+            <img src={icon} alt="Logo" className="w-[28] h-[12]" />
+            <span className="font-medium text-[26px]">Die Rezeptwelt</span>
+          </div>
+          <nav>
+            <ul className="flex gap-18">
+              <li className="text-[26px] font-medium">
+                <Link to="/">Home</Link>
+              </li>
+              <li className="text-[26px] font-medium">
+                <Link to="/rezepte">Rezepte</Link>
+              </li>
+              <li className="text-[26px] font-medium">
+                <Link to="/uber-uns">Über uns</Link>
+              </li>
+              <li className="text-[26px] font-medium">
+                <Link to="/login">Login</Link>
+              </li>
+            </ul>
+          </nav>
+        </div>
+      </div>
+    </header>
+  );
+};
+
+export default Header;

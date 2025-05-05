@@ -1,0 +1,16 @@
+@import url("https://fonts.googleapis.com/css2?family=Inter:ital,opsz,wght@0,14..32,100..900;1,14..32,100..900&display=swap");
+
+.about-us {
+  height: 985px;
+  font-size: 30px;
+  font-family: "Inter", sans-serif;
+}
+
+.about-us-content {
+  height: 828px;
+  margin: 75px 144px 83px 144px;
+}
+
+.about-us-content p {
+  margin-bottom: 30px;
+}
