@@ -1,5 +1,6 @@
+import Footer from "../components/Footer";
 import Header from "../components/Header";
-import RecipeCard from "../components/RecipeCard";
+
 import RecipeItem from "../components/RecipeItem";
 
 const RezepteDetails = () => {
@@ -7,6 +8,7 @@ const RezepteDetails = () => {
     <div>
       <Header />
       <RecipeItem />
+      <Footer />
     </div>
   );
 };

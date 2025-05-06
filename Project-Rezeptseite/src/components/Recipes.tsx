@@ -57,11 +57,18 @@ const Recipes = () => {
               className="w-full md:w-1/2 p-2 border rounded shadow focus:outline-none"
             />
           </div>
-          <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-12">
-            {recipes.map((recipe) => (
-              <RecipeCard key={recipe.id} recipe={recipe} />
-            ))}
-          </div>
+
+          {recipes === null ? (
+            <p className="text-center text-red-500">Loading...</p>
+          ) : recipes.length === 0 ? (
+            <p className="text-center text-gray-600">No results found.</p>
+          ) : (
+            <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-12">
+              {recipes.map((recipe) => (
+                <RecipeCard key={recipe.id} recipe={recipe} />
+              ))}
+            </div>
+          )}
         </div>
       ) : (
         <p className="text-center text-red-500">Loading...</p>
