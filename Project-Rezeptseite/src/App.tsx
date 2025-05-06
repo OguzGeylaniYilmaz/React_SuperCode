@@ -13,7 +13,14 @@ const App = () => {
       <Route path="/uber-uns" element={<ÜberUns />} />
       <Route path="/rezeptedetails/:id" element={<RezepteDetails />} />
       {/* <Route path="/login" element={<Login />} /> */}
-      <Route path="*" element={<h1>Page not found (404)</h1>} />
+      <Route
+        path="*"
+        element={
+          <h1 style={{ textAlign: "center", fontSize: "50px", color: "red" }}>
+            Page not found (404)
+          </h1>
+        }
+      />
     </Routes>
   );
 };

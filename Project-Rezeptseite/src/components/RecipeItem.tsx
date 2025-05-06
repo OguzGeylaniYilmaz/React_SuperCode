@@ -1,5 +1,5 @@
 import React, { use, useEffect, useState } from "react";
-import { Link, useParams } from "react-router-dom";
+import { Link, useNavigate, useParams } from "react-router-dom";
 import { supabase } from "../lib/supabase/supabaseClient";
 import { Category, Ingredient, Recipe } from "../types/RecipeType";
 import Button from "./ui/Button";
@@ -14,6 +14,7 @@ const RecipeItem = () => {
   const [recipe, setRecipe] = useState<RecipeDetailsData | null>(null);
   const [loading, setLoading] = useState(true);
   const [error, setError] = useState<string | null>(null);
+  const navigate = useNavigate();
 
   useEffect(() => {
     async function fetchRecipe() {
@@ -105,12 +106,33 @@ const RecipeItem = () => {
         </ul>
       </section>
 
-      <section>
+      <section className="mb-6">
         <h2 className="text-2xl font-semibold mb-2">Zubereitung</h2>
         <p className="whitespace-pre-line text-gray-700">
           {recipe.instructions}
         </p>
       </section>
+
+      <div className="flex space-x-2 mb-6">
+        <button
+          className="bg-blue-500 hover:bg-blue-600 text-white font-semibold py-2 px-4 rounded"
+          onClick={() => navigate(`/rezeptedetails/${recipe.id}/edit`)}
+        >
+          Ändern
+        </button>
+        <button
+          className="bg-red-500 hover:bg-red-600 text-white font-semibold py-2 px-4 rounded"
+          // variant="danger"
+          onClick={async () => {
+            if (confirm("Möchten Sie dieses Rezept wirklich löschen?")) {
+              await supabase.from("recipes").delete().eq("id", recipe.id);
+              navigate("/");
+            }
+          }}
+        >
+          Löschen
+        </button>
+      </div>
     </div>
   );
 };
