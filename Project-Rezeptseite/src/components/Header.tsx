@@ -13,16 +13,16 @@ const Header = () => {
           </div>
           <nav>
             <ul className="flex gap-18">
-              <li className="text-[26px] font-medium">
+              <li className="text-[22px] font-medium">
                 <Link to="/">Home</Link>
               </li>
-              <li className="text-[26px] font-medium">
+              <li className="text-[22px] font-medium">
                 <Link to="/rezepte">Rezepte</Link>
               </li>
-              <li className="text-[26px] font-medium">
+              <li className="text-[22px] font-medium">
                 <Link to="/uber-uns">Über uns</Link>
               </li>
-              <li className="text-[26px] font-medium">
+              <li className="text-[22px] font-medium">
                 <Link to="/login">Login</Link>
               </li>
             </ul>

@@ -6,23 +6,41 @@ import { Recipe } from "../types/RecipeType";
 
 const Recipes = () => {
   const [recipes, setRecipes] = useState<Recipe[] | null>(null);
+  const [searchTerm, setSearchTerm] = useState("");
 
-  async function fetchRecipes() {
-    const { data } = await supabase
+  const [debouncedTerm, setDebouncedTerm] = useState(searchTerm);
+
+  useEffect(() => {
+    const handler = setTimeout(() => {
+      setDebouncedTerm(searchTerm);
+    }, 500);
+
+    return () => clearTimeout(handler);
+  }, [searchTerm]);
+
+  useEffect(() => {
+    fetchRecipes(debouncedTerm);
+  }, [debouncedTerm]);
+
+  async function fetchRecipes(term: string) {
+    let query = supabase
       .from("recipes")
-      .select("*,ingredients(*),categories(*)")
+      .select("*, ingredients(*), categories(*)")
       .order("rating", { ascending: true })
       .limit(3);
 
-    if (data) {
+    if (term.trim() !== "") {
+      query = query.ilike("name", `%${term.trim()}%`);
+    }
+
+    const { data, error } = await query;
+    if (error) {
+      console.error("Error fetching recipes:", error);
+      setRecipes([]);
+    } else {
       setRecipes(data);
     }
   }
-
-  useEffect(() => {
-    fetchRecipes();
-  }, []);
-
   return (
     <div className="h-[650px] bg-gray-50 py-10 px-4">
       {recipes ? (
@@ -30,6 +48,15 @@ const Recipes = () => {
           <h2 className="text-3xl font-semibold text-center mb-10">
             Die beliebtesten Rezepte
           </h2>
+          <div className="flex justify-center mb-8">
+            <input
+              type="text"
+              placeholder="Suchen..."
+              value={searchTerm}
+              onChange={(e) => setSearchTerm(e.target.value)}
+              className="w-full md:w-1/2 p-2 border rounded shadow focus:outline-none"
+            />
+          </div>
           <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-12">
             {recipes.map((recipe) => (
               <RecipeCard key={recipe.id} recipe={recipe} />

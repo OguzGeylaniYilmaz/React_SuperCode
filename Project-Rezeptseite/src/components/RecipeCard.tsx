@@ -1,6 +1,8 @@
 import React from "react";
-import Recipe from "../types/RecipeType";
+
 import Button from "./ui/Button";
+import { Link } from "react-router-dom";
+import { Recipe } from "../types/RecipeType";
 
 interface RecipeCardProps {
   recipe: Recipe;
@@ -17,7 +19,9 @@ const RecipeCard: React.FC<RecipeCardProps> = ({ recipe }) => (
       <h3 className="font-semibold text-xl mb-2">{recipe.name}</h3>
 
       <p className="text-gray-700 mb-4 text-sm">{recipe.description}</p>
-      <Button>Zum Rezept</Button>
+      <Link to={`/rezeptedetails/${recipe.id}`}>
+        <Button>Zum Rezept</Button>
+      </Link>
     </div>
   </div>
 );
