@@ -2,6 +2,7 @@ import React, { use, useEffect, useState } from "react";
 import Recipe from "../types/RecipeType";
 import { supabase } from "../lib/supabase/supabaseClient";
 import RecipeCard from "./RecipeCard";
+import { Link } from "react-router-dom";
 
 const NewRecipes = () => {
   const [recipes, setRecipes] = useState<Recipe[] | null>(null);
@@ -35,6 +36,12 @@ const NewRecipes = () => {
       ) : (
         <p className="text-center text-red-500">Loading...</p>
       )}
+
+      <Link to={"/rezepterstellen"}>
+        <button className="bg-green-400 mx-auto mt-10 flex justify-center align-center px-4 py-2 rounded-xl text-black">
+          Rezept erstellen
+        </button>
+      </Link>
     </div>
   );
 };
