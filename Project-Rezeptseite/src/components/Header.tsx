@@ -1,7 +1,16 @@
 import { Link } from "react-router-dom";
 import icon from "../assets/images/Ico.png";
+import { UserContext } from "../context/UserContext";
+import { useContext } from "react";
 
 const Header = () => {
+  const context = useContext(UserContext);
+  if (!context) {
+    throw new Error("UserContext must be wrapped with Provider before use!");
+  }
+
+  // const { user, logout } = context;
+
   return (
     <header>
       <div className="bg-yellow-300 h-[30px]" />
