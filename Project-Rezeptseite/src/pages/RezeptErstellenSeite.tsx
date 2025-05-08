@@ -19,11 +19,21 @@ const RezeptErstellenSeite = () => {
 
   useEffect(() => {
     async function fetchCategories() {
-      const { data } = await supabase
-        .from<Category>("categories")
-        .select("id, name")
+      const { data, error } = await supabase
+        .from("categories")
+        .select("id, name, created_at")
         .order("name", { ascending: true });
+
+      if (error) {
+        console.error("Error fetching categories:", error);
+      } else {
+        setCategories(data);
+        if (!categoryId && data.length > 0) {
+          setCategoryId(data[0].id);
+        }
+      }
     }
+    fetchCategories();
   }, []);
 
   return (

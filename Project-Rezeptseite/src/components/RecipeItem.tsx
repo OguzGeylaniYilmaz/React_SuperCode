@@ -1,4 +1,4 @@
-import React, { use, useEffect, useState } from "react";
+import React, { useEffect, useState } from "react";
 import { Link, useNavigate, useParams } from "react-router-dom";
 import { supabase } from "../lib/supabase/supabaseClient";
 import { Category, Ingredient, Recipe } from "../types/RecipeType";
@@ -14,7 +14,16 @@ const RecipeItem = () => {
   const [recipe, setRecipe] = useState<RecipeDetailsData | null>(null);
   const [loading, setLoading] = useState(true);
   const [error, setError] = useState<string | null>(null);
+  const [isEditing, setIsEditing] = useState(false);
   const navigate = useNavigate();
+
+  // Edit form state
+  const [editForm, setEditForm] = useState({
+    name: "",
+    description: "",
+    instructions: "",
+    rating: 0,
+  });
 
   useEffect(() => {
     async function fetchRecipe() {
@@ -53,9 +62,16 @@ const RecipeItem = () => {
           throw error;
         }
         setRecipe(data as RecipeDetailsData);
+        // Initialize edit form with current data
+        setEditForm({
+          name: data.name,
+          description: data.description,
+          instructions: data.instructions,
+          rating: data.rating || 0,
+        });
       } catch (err: any) {
         console.error(err);
-        setError(err.message || "Veri alınırken hata oluştu");
+        setError(err.message || "An error occurred while retrieving data");
       } finally {
         setLoading(false);
       }
@@ -64,13 +80,56 @@ const RecipeItem = () => {
     if (id) fetchRecipe();
   }, [id]);
 
+  const handleEditChange = (
+    e: React.ChangeEvent<HTMLInputElement | HTMLTextAreaElement>
+  ) => {
+    const { name, value } = e.target;
+    setEditForm((prev) => ({
+      ...prev,
+      [name]: name === "rating" ? parseInt(value) || 0 : value,
+    }));
+  };
+
+  const handleSave = async () => {
+    try {
+      setLoading(true);
+      const { error } = await supabase
+        .from("recipes")
+        .update({
+          name: editForm.name,
+          description: editForm.description,
+          instructions: editForm.instructions,
+          rating: editForm.rating,
+        })
+        .eq("id", id!);
+
+      if (error) throw error;
+
+      setIsEditing(false);
+      navigate("/");
+    } catch (err: any) {
+      console.error(err);
+      setError(err.message || "An error occurred while updating");
+    } finally {
+      setLoading(false);
+    }
+  };
+
+  const handleDelete = async () => {
+    if (!recipe?.id) return;
+    if (confirm("Möchten Sie dieses Rezept wirklich löschen?")) {
+      await supabase.from("recipes").delete().eq("id", recipe?.id);
+      navigate("/");
+    }
+  };
+
   if (loading) return <p className="text-center py-10">Loading...</p>;
   if (error) return <p className="text-center text-red-500 py-10">{error}</p>;
   if (!recipe)
     return <p className="text-center py-10">Kein Rezept gefunden.</p>;
 
   return (
-    <div className="max-w-3xl mx-auto bg-white rounded-lg shadow p-6 mb-20">
+    <div className="max-w-3xl mx-auto bg-white rounded-lg shadow p-6 mb-20 relative">
       <Link to="/" className="mb-4 inline-block">
         <Button>Zurück</Button>
       </Link>
@@ -116,23 +175,91 @@ const RecipeItem = () => {
       <div className="flex space-x-2 mb-6">
         <button
           className="bg-blue-500 hover:bg-blue-600 text-white font-semibold py-2 px-4 rounded"
-          onClick={() => navigate(`/rezeptedetails/${recipe.id}/edit`)}
+          onClick={() => setIsEditing(true)}
         >
           Ändern
         </button>
         <button
           className="bg-red-500 hover:bg-red-600 text-white font-semibold py-2 px-4 rounded"
-          // variant="danger"
-          onClick={async () => {
-            if (confirm("Möchten Sie dieses Rezept wirklich löschen?")) {
-              await supabase.from("recipes").delete().eq("id", recipe.id);
-              navigate("/");
-            }
-          }}
+          onClick={handleDelete}
         >
           Löschen
         </button>
       </div>
+
+      {/* Edit Modal */}
+      {isEditing && (
+        <div className="fixed inset-0 bg-black bg-opacity-50 flex items-center justify-center p-4 z-50">
+          <div className="bg-white rounded-lg p-6 w-full max-w-md">
+            <h2 className="text-2xl font-bold mb-4">Rezept bearbeiten</h2>
+
+            <div className="space-y-4">
+              <div>
+                <label className="block text-gray-700 mb-1">Name</label>
+                <input
+                  type="text"
+                  name="name"
+                  value={editForm.name}
+                  onChange={handleEditChange}
+                  className="w-full px-3 py-2 border rounded"
+                />
+              </div>
+
+              <div>
+                <label className="block text-gray-700 mb-1">Beschreibung</label>
+                <textarea
+                  name="description"
+                  value={editForm.description}
+                  onChange={handleEditChange}
+                  className="w-full px-3 py-2 border rounded"
+                  rows={3}
+                />
+              </div>
+
+              <div>
+                <label className="block text-gray-700 mb-1">Anleitung</label>
+                <textarea
+                  name="instructions"
+                  value={editForm.instructions}
+                  onChange={handleEditChange}
+                  className="w-full px-3 py-2 border rounded"
+                  rows={6}
+                />
+              </div>
+
+              <div>
+                <label className="block text-gray-700 mb-1">
+                  Bewertung (0-5)
+                </label>
+                <input
+                  type="number"
+                  name="rating"
+                  value={editForm.rating}
+                  onChange={handleEditChange}
+                  className="w-full px-3 py-2 border rounded"
+                  min="0"
+                  max="5"
+                />
+              </div>
+            </div>
+
+            <div className="flex justify-end space-x-2 mt-6">
+              <button
+                className="px-4 py-2 border rounded hover:bg-gray-100"
+                onClick={() => setIsEditing(false)}
+              >
+                Abbrechen
+              </button>
+              <button
+                className="px-4 py-2 bg-green-500 text-white rounded hover:bg-green-600"
+                onClick={handleSave}
+              >
+                Speichern
+              </button>
+            </div>
+          </div>
+        </div>
+      )}
     </div>
   );
 };
