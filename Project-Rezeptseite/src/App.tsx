@@ -6,6 +6,7 @@ import RezepteDetails from "./pages/RezepteDetails";
 import RezeptErstellenSeite from "./pages/RezeptErstellenSeite";
 import Login from "./pages/Login";
 import { UserProvider } from "./context/UserContext";
+import SignUp from "./pages/SignUp";
 
 const App = () => {
   return (
@@ -17,6 +18,7 @@ const App = () => {
         <Route path="/rezeptedetails/:id" element={<RezepteDetails />} />
         <Route path="/rezepterstellen" element={<RezeptErstellenSeite />} />
         <Route path="/login" element={<Login />} />
+        <Route path="/signup" element={<SignUp />} />
         <Route
           path="*"
           element={
