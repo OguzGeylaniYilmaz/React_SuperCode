@@ -6,23 +6,22 @@ const Login = () => {
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
   const [error, setError] = useState("");
+  const navigate = useNavigate();
 
   const handleLogin = async () => {
-    const [email, setEmail] = useState("");
-    const [password, setPassword] = useState("");
-    const [error, setError] = useState("");
-
-    const handleLogin = async () => {
-      if (!email) {
-        setError("E-posta girin!");
-        return;
-      }
-      const { error: loginError } = await supabase.auth.signInWithPassword({
-        email,
-        password,
-      });
-      if (loginError) setError(loginError.message);
-    };
+    if (!email || !password) {
+      setError("Bitte alle Felder ausfüllen");
+      return;
+    }
+    const { error: loginError } = await supabase.auth.signInWithPassword({
+      email,
+      password,
+    });
+    if (loginError) {
+      setError(loginError.message);
+      return;
+    }
+    navigate("/uber-uns");
   };
 
   return (
