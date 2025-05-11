@@ -6,12 +6,13 @@ export default function UserSignUp() {
   const [password, setPassword] = useState("");
   const [firstName, setFirstName] = useState("");
   const [lastName, setLastName] = useState("");
-  const [error, setError] = useState(null);
+  const [error, setError] = useState("null");
+  const [loading, setLoading] = useState(false);
   const [success, setSuccess] = useState(false);
 
   const handleSignup = async (e: React.FormEvent) => {
     e.preventDefault();
-    setError(null);
+    setLoading(true);
 
     try {
       const { data, error: signUpError } = await supabase.auth.signUp({
@@ -28,7 +29,9 @@ export default function UserSignUp() {
       if (signUpError) throw signUpError;
       setSuccess(true);
     } catch (err: string | any) {
-      setError(err.message);
+      setError("An error occurred while signing up " + err.message);
+    } finally {
+      setLoading(false);
     }
   };
 
@@ -190,6 +193,7 @@ export default function UserSignUp() {
               <div>
                 <button
                   type="submit"
+                  onClick={handleSignup}
                   className="w-full flex justify-center py-2 px-4 border border-transparent rounded-md shadow-sm text-sm font-medium text-white bg-indigo-600 hover:bg-indigo-700 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-indigo-500"
                 >
                   Sign Up

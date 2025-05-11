@@ -26,7 +26,7 @@ const UserLogin = () => {
 
   return (
     <div className="max-w-md mx-auto mt-16 p-8 bg-white rounded-2xl shadow-lg">
-      <h2 className="text-2xl font-bold mb-6 text-center">Anmeldung</h2>
+      <h2 className="text-2xl font-bold mb-6 text-center">Login</h2>
       <input
         type="email"
         value={email}
@@ -38,21 +38,27 @@ const UserLogin = () => {
         type="password"
         value={password}
         onChange={(e) => setPassword(e.target.value)}
-        placeholder="Passwort"
+        placeholder="Password"
         className="w-full mb-4 px-4 py-3 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-blue-400 transition"
       />
       <button
         onClick={handleLogin}
         className="w-full bg-blue-500 hover:bg-blue-600 text-white font-semibold py-3 rounded-lg transition-colors"
       >
-        Anmelden
+        Sign In
       </button>
       {error && <p className="text-red-500 text-sm mt-3">{error}</p>}
       <a
         href="/forgot-password"
-        className="block mt-4 text-center text-sm font-medium text-blue-500 hover:underline"
+        className="block mt-4 text-center text-sm font-medium text-red-500 hover:underline"
       >
-        Passwort vergessen?
+        Forgot your password?
+      </a>
+      <a
+        href="/signup"
+        className="block mt-4 text-center text-sm font-medium text-red-500 hover:underline"
+      >
+        Don't you have an account?
       </a>
     </div>
   );
