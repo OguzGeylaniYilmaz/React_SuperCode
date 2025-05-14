@@ -3,6 +3,12 @@ import { Link, useNavigate, useParams } from "react-router-dom";
 import { supabase } from "../lib/supabase/supabaseClient";
 import { Category, Ingredient, Recipe } from "../types/RecipeType";
 import Button from "./ui/Button";
+import {
+  FaHeart as SolidHeart,
+  FaRegHeart as OutlineHeart,
+} from "react-icons/fa";
+
+import { useSession } from "@supabase/auth-helpers-react";
 
 interface RecipeDetailsData extends Recipe {
   ingredients: Ingredient[];
@@ -11,13 +17,19 @@ interface RecipeDetailsData extends Recipe {
 
 const RecipeItem = () => {
   const { id } = useParams<{ id: string }>();
+  const session = useSession();
+  const userId = session?.user?.id;
+
   const [recipe, setRecipe] = useState<RecipeDetailsData | null>(null);
   const [loading, setLoading] = useState(true);
   const [error, setError] = useState<string | null>(null);
   const [isEditing, setIsEditing] = useState(false);
-  const navigate = useNavigate();
 
-  // Edit form state
+  const [isFavorite, setIsFavorite] = useState(false);
+  const [favoriteId, setFavoriteId] = useState<string | null>(null);
+  const [favLoading, setFavLoading] = useState(true);
+
+  const navigate = useNavigate();
   const [editForm, setEditForm] = useState({
     name: "",
     description: "",
@@ -77,8 +89,58 @@ const RecipeItem = () => {
       }
     }
 
-    if (id) fetchRecipe();
-  }, [id]);
+    async function fetchFavorite() {
+      if (!userId || !id) return setFavLoading(false);
+      try {
+        const { data } = await supabase
+          .from("recipe_favorites")
+          .select("id")
+          .eq("user_id", userId)
+          .eq("recipe_id", id)
+          .single();
+        if (data) {
+          setIsFavorite(true);
+          setFavoriteId(data.id);
+        }
+      } catch (err) {
+        console.error("Error fetching favorite:", err);
+      } finally {
+        setFavLoading(false);
+      }
+    }
+
+    if (id) {
+      fetchRecipe();
+      fetchFavorite();
+    }
+  }, [id, userId]);
+
+  const toggleFavorite = async () => {
+    if (!userId || !id) return;
+    setFavLoading(true);
+    try {
+      if (isFavorite && favoriteId) {
+        // Remove favorite
+        await supabase.from("recipe_favorites").delete().eq("id", favoriteId);
+        setIsFavorite(false);
+        setFavoriteId(null);
+      } else {
+        // Add favorite
+        const { data, error } = await supabase
+          .from("recipe_favorites")
+          .insert({ user_id: userId, recipe_id: id })
+          .select("id")
+          .single();
+        if (error) throw error;
+        setIsFavorite(true);
+        setFavoriteId(data?.id ?? null);
+      }
+    } catch (err) {
+      console.error("Error toggling favorite:", err);
+    } finally {
+      setFavLoading(false);
+    }
+  };
 
   const handleEditChange = (
     e: React.ChangeEvent<HTMLInputElement | HTMLTextAreaElement>
@@ -133,6 +195,16 @@ const RecipeItem = () => {
       <Link to="/" className="mb-4 inline-block">
         <Button>Zurück</Button>
       </Link>
+
+      <div className="flex items-center justify-between mb-4">
+        <button onClick={toggleFavorite} disabled={favLoading}>
+          {isFavorite ? (
+            <SolidHeart className="h-8 w-8 text-red-500" />
+          ) : (
+            <OutlineHeart className="h-8 w-8 text-gray-400 hover:text-gray-600" />
+          )}
+        </button>
+      </div>
 
       <h1 className="text-4xl font-bold mb-2">{recipe.name}</h1>
       <p className="text-gray-600 mb-4">

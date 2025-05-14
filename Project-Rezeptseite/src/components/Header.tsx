@@ -2,6 +2,7 @@ import { Link } from "react-router-dom";
 import icon from "../assets/images/Ico.png";
 import { UserContext } from "../context/UserContext";
 import { useContext, useEffect, useState } from "react";
+import { supabase } from "../lib/supabase/supabaseClient";
 
 const Header = () => {
   const [showLoginMsg, setShowLoginMsg] = useState(false);
@@ -13,14 +14,16 @@ const Header = () => {
   const { user, logout } = context;
 
   useEffect(() => {
-    if (user) {
-      setShowLoginMsg(true);
-      const timer = setTimeout(() => {
-        setShowLoginMsg(false);
-      }, 3000);
-      return () => clearTimeout(timer);
-    }
-  }, [user]);
+    const { data: listener } = supabase.auth.onAuthStateChange((event) => {
+      if (event === "SIGNED_IN") {
+        setShowLoginMsg(true);
+        setTimeout(() => setShowLoginMsg(false), 3000);
+      }
+    });
+    return () => {
+      listener.subscription.unsubscribe();
+    };
+  }, []);
 
   return (
     <header>
@@ -46,7 +49,7 @@ const Header = () => {
               {user ? (
                 <>
                   {showLoginMsg && (
-                    <li className="text-[22px] font-medium text-green-600">
+                    <li className="text-[22px] font-medium text-red-600">
                       User is currently logged in
                     </li>
                   )}
@@ -65,10 +68,6 @@ const Header = () => {
                   <Link to="/login">Login</Link>
                 </li>
               )}
-
-              {/* <li className="text-[22px] font-medium">
-                <Link to="/login">Login</Link>
-              </li> */}
             </ul>
           </nav>
         </div>
