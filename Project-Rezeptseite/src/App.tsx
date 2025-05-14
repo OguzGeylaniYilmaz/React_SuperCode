@@ -7,6 +7,7 @@ import RezeptErstellenSeite from "./pages/RezeptErstellenSeite";
 import Login from "./pages/Login";
 import { UserProvider } from "./context/UserContext";
 import SignUp from "./pages/SignUp";
+import UserProfile from "./components/UserProfile";
 
 const App = () => {
   return (
@@ -19,7 +20,7 @@ const App = () => {
         <Route path="/rezepterstellen" element={<RezeptErstellenSeite />} />
         <Route path="/login" element={<Login />} />
         <Route path="/signup" element={<SignUp />} />
-        <Route path="/profile" element={<h1>Profile</h1>} />
+        <Route path="/userprofile" element={<UserProfile />} />
         <Route
           path="*"
           element={

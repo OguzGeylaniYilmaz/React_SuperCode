@@ -33,25 +33,65 @@ const UserProfile = () => {
       setProfile(data);
     };
 
-    fetchUserData;
+    fetchUserData();
   }, []);
 
   if (userData) {
     return (
-      <div>
-        <h1>Profile</h1>
-        <p>First Name: {profile?.first_name}</p>
-        <p>Last Name: {profile?.last_name}</p>
-        <p>Created At: {profile?.created_at}</p>
-        <p>Updated At: {profile?.updated_at}</p>
-        <p>Last Login At: {profile?.last_login_at}</p>
+      <div className="max-w-lg mx-auto bg-white shadow-lg rounded-2xl overflow-hidden mt-8">
+        <div className="bg-indigo-600 p-5">
+          <h1 className="text-white text-2xl font-semibold">User Profile</h1>
+        </div>
+
+        <div className="p-6 space-y-6">
+          <dl className="grid grid-cols-1 sm:grid-cols-2 gap-x-6 gap-y-4">
+            <div>
+              <dt className="text-sm font-medium text-gray-500">First Name</dt>
+              <dd className="mt-1 text-lg font-normal text-gray-900">
+                {profile?.first_name ?? "—"}
+              </dd>
+            </div>
+            <div>
+              <dt className="text-sm font-medium text-gray-500">Last Name</dt>
+              <dd className="mt-1 text-lg font-normal text-gray-900">
+                {profile?.last_name ?? "—"}
+              </dd>
+            </div>
+            <div>
+              <dt className="text-sm font-medium text-gray-500">Created At</dt>
+              <dd className="mt-1 text-lg font-normal text-gray-900">
+                {profile?.created_at
+                  ? new Date(profile.created_at).toLocaleDateString()
+                  : "—"}
+              </dd>
+            </div>
+            <div>
+              <dt className="text-sm font-medium text-gray-500">Updated At</dt>
+              <dd className="mt-1 text-lg font-normal text-gray-900">
+                {profile?.updated_at
+                  ? new Date(profile.updated_at).toLocaleDateString()
+                  : "—"}
+              </dd>
+            </div>
+            <div className="sm:col-span-2">
+              <dt className="text-sm font-medium text-gray-500">
+                Last Login At
+              </dt>
+              <dd className="mt-1 text-lg font-normal text-gray-900">
+                {profile?.last_login_at
+                  ? new Date(profile.last_login_at).toLocaleString()
+                  : "—"}
+              </dd>
+            </div>
+          </dl>
+        </div>
       </div>
     );
   }
 
   return (
     <div>
-      <h1>Profile</h1>
+      <h1 className="text-center">Profile</h1>
       <p>Loading...</p>
     </div>
   );

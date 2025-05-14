@@ -10,7 +10,7 @@ const UserLogin = () => {
 
   const handleLogin = async () => {
     if (!email || !password) {
-      setError("Bitte alle Felder ausfüllen");
+      setError("Please fill in all fields");
       return;
     }
     const { error: loginError } = await supabase.auth.signInWithPassword({
