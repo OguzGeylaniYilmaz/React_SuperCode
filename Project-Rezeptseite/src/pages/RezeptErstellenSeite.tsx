@@ -2,6 +2,9 @@ import React, { use, useEffect, useState } from "react";
 import { useNavigate, useParams } from "react-router-dom";
 import { Category, Recipe } from "../types/RecipeType";
 import { supabase } from "../lib/supabase/supabaseClient";
+import { Database } from "../types/supabase-types";
+
+type RecipeInsert = Database["public"]["Tables"]["recipes"]["Insert"];
 
 const RezeptErstellenSeite = () => {
   const { id } = useParams<{ id: string }>();
@@ -21,20 +24,55 @@ const RezeptErstellenSeite = () => {
     async function fetchCategories() {
       const { data, error } = await supabase
         .from("categories")
-        .select("id, name, created_at")
+        .select("id, name")
         .order("name", { ascending: true });
 
       if (error) {
-        console.error("Error fetching categories:", error);
-      } else {
+        console.log("Error fetching categories:", error);
+      } else if (data.length) {
         setCategories(data);
-        if (!categoryId && data.length > 0) {
-          setCategoryId(data[0].id);
-        }
+        setCategoryId(data[0].id);
       }
     }
     fetchCategories();
   }, []);
+
+  const handleSubmit = async (e: React.FormEvent) => {
+    e.preventDefault();
+    setLoading(true);
+    setError(null);
+
+    const servingsNum = parseInt(servings, 10);
+    if (isNaN(servingsNum) || servingsNum <= 1) {
+      setError("The number of portions must be a positive integer.");
+      setLoading(false);
+      return;
+    }
+
+    const newRecipe: RecipeInsert = {
+      name,
+      description,
+      instructions,
+      servings: servingsNum,
+      category_id: categoryId,
+    };
+
+    try {
+      const { data, error } = await supabase
+        .from("recipes")
+        .insert(newRecipe)
+        .select();
+
+      if (error) throw error;
+
+      const newId = data?.[0].id;
+      navigate(newId ? `/rezeptedetails/${newId}` : `/`);
+    } catch (err: any) {
+      setError(err.message);
+    } finally {
+      setLoading(false);
+    }
+  };
 
   return (
     <div className="max-w-xl mx-auto bg-white rounded-lg shadow p-6 mt-5">
@@ -42,7 +80,7 @@ const RezeptErstellenSeite = () => {
         {isEdit ? "Rezept bearbeiten" : "Neues Rezept erstellen"}
       </h1>
       {error && <p className="text-red-500 mb-2">{error}</p>}
-      <form className="space-y-4">
+      <form className="space-y-4" onSubmit={handleSubmit}>
         <div>
           <label className="block mb-1 font-medium">Name</label>
           <input
