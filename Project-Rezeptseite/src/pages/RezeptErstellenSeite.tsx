@@ -24,7 +24,7 @@ const RezeptErstellenSeite = () => {
     async function fetchCategories() {
       const { data, error } = await supabase
         .from("categories")
-        .select("id, name")
+        .select("id, name, created_at")
         .order("name", { ascending: true });
 
       if (error) {
@@ -75,74 +75,102 @@ const RezeptErstellenSeite = () => {
   };
 
   return (
-    <div className="max-w-xl mx-auto bg-white rounded-lg shadow p-6 mt-5">
-      <h1 className="text-2xl font-bold mb-4 text-center  text-red-600">
-        {isEdit ? "Rezept bearbeiten" : "Neues Rezept erstellen"}
-      </h1>
-      {error && <p className="text-red-500 mb-2">{error}</p>}
-      <form className="space-y-4" onSubmit={handleSubmit}>
-        <div>
-          <label className="block mb-1 font-medium">Name</label>
-          <input
-            className="w-full border p-2 rounded"
-            value={name}
-            onChange={(e) => setName(e.target.value)}
-            required
-          />
-        </div>
-        <div>
-          <label className="block mb-1 font-medium">Beschreibung</label>
-          <textarea
-            className="w-full border p-2 rounded"
-            value={description}
-            onChange={(e) => setDescription(e.target.value)}
-            required
-          />
-        </div>
-        <div>
-          <label className="block mb-1 font-medium">Anzahl der Portionen</label>
-          <input
-            type="number"
-            min={1}
-            className="w-full border p-2 rounded"
-            value={servings}
-            onChange={(e) => setServings(e.target.value)}
-            required
-          />
-        </div>
-        <div>
-          <label className="block mb-1 font-medium">Anleitung</label>
-          <textarea
-            className="w-full border p-2 rounded whitespace-pre-line"
-            value={instructions}
-            onChange={(e) => setInstructions(e.target.value)}
-            required
-          />
-        </div>
-        <div>
-          <label className="block mb-1 font-medium">Kategorie</label>
-          <select
-            className="w-full border p-2 rounded"
-            value={categoryId}
-            onChange={(e) => setCategoryId(e.target.value)}
-          >
-            {categories.map((cat) => (
-              <option key={cat.id} value={cat.id}>
-                {cat.name}
-              </option>
-            ))}
-          </select>
-        </div>
-        <div className="flex justify-end">
-          <button
-            className="bg-blue-500 hover:bg-blue-600 text-white font-semibold py-2 px-4 rounded"
-            type="submit"
-            disabled={loading}
-          >
-            {isEdit ? "Änderungen speichern" : "Rezept speichern"}
-          </button>
-        </div>
-      </form>
+    <div className="min-h-screen bg-gradient-to-b from-gray-50 to-gray-100 py-12 px-4 sm:px-6 lg:px-8">
+      <div className="max-w-2xl mx-auto bg-white rounded-xl shadow-lg p-8">
+        <h1 className="text-3xl font-bold mb-8 text-center text-red-600 border-b pb-4">
+          {isEdit ? "Rezept bearbeiten" : "Neues Rezept erstellen"}
+        </h1>
+        {error && (
+          <div className="mb-6 bg-red-50 border-l-4 border-red-500 p-4 rounded">
+            <p className="text-red-700">{error}</p>
+          </div>
+        )}
+        <form className="space-y-6" onSubmit={handleSubmit}>
+          <div>
+            <label className="block text-sm font-semibold text-gray-700 mb-2">
+              Name
+            </label>
+            <input
+              className="w-full border border-gray-300 rounded-lg px-4 py-2 focus:ring-2 focus:ring-red-500 focus:border-transparent transition duration-200"
+              value={name}
+              onChange={(e) => setName(e.target.value)}
+              required
+              placeholder="Rezeptname eingeben"
+            />
+          </div>
+          <div>
+            <label className="block text-sm font-semibold text-gray-700 mb-2">
+              Beschreibung
+            </label>
+            <textarea
+              className="w-full border border-gray-300 rounded-lg px-4 py-2 focus:ring-2 focus:ring-red-500 focus:border-transparent transition duration-200 min-h-[100px]"
+              value={description}
+              onChange={(e) => setDescription(e.target.value)}
+              required
+              placeholder="Kurze Beschreibung des Rezepts"
+            />
+          </div>
+          <div>
+            <label className="block text-sm font-semibold text-gray-700 mb-2">
+              Anzahl der Portionen
+            </label>
+            <input
+              type="number"
+              min={1}
+              className="w-full border border-gray-300 rounded-lg px-4 py-2 focus:ring-2 focus:ring-red-500 focus:border-transparent transition duration-200"
+              value={servings}
+              onChange={(e) => setServings(e.target.value)}
+              required
+              placeholder="z.B. 4"
+            />
+          </div>
+          <div>
+            <label className="block text-sm font-semibold text-gray-700 mb-2">
+              Anleitung
+            </label>
+            <textarea
+              className="w-full border border-gray-300 rounded-lg px-4 py-2 focus:ring-2 focus:ring-red-500 focus:border-transparent transition duration-200 min-h-[200px]"
+              value={instructions}
+              onChange={(e) => setInstructions(e.target.value)}
+              required
+              placeholder="Schritt-für-Schritt Anleitung"
+            />
+          </div>
+          <div>
+            <label className="block text-sm font-semibold text-gray-700 mb-2">
+              Kategorie
+            </label>
+            <select
+              className="w-full border border-gray-300 rounded-lg px-4 py-2 focus:ring-2 focus:ring-red-500 focus:border-transparent transition duration-200 bg-white"
+              value={categoryId}
+              onChange={(e) => setCategoryId(e.target.value)}
+            >
+              {categories.map((cat) => (
+                <option key={cat.id} value={cat.id}>
+                  {cat.name}
+                </option>
+              ))}
+            </select>
+          </div>
+          <div className="flex justify-end pt-6">
+            <button
+              className={`px-6 py-3 rounded-lg font-semibold text-white transition duration-200 ${
+                loading
+                  ? "bg-gray-400 cursor-not-allowed"
+                  : "bg-purple-600 hover:bg-purple-700 active:bg-pupple-800"
+              }`}
+              type="submit"
+              disabled={loading}
+            >
+              {loading
+                ? "Wird gespeichert..."
+                : isEdit
+                ? "Änderungen speichern"
+                : "Rezept speichern"}
+            </button>
+          </div>
+        </form>
+      </div>
     </div>
   );
 };
