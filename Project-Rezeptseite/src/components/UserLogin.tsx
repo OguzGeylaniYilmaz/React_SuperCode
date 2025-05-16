@@ -1,5 +1,5 @@
 import { useState } from "react";
-import { useNavigate } from "react-router-dom";
+import { Link, useNavigate } from "react-router-dom";
 import { supabase } from "../lib/supabase/supabaseClient";
 
 const UserLogin = () => {
@@ -48,12 +48,14 @@ const UserLogin = () => {
         Sign In
       </button>
       {error && <p className="text-red-500 text-sm mt-3">{error}</p>}
-      <a
-        href="/forgot-password"
+
+      <Link
+        to="/forgetpassword"
         className="block mt-4 text-center text-sm font-medium text-red-500 hover:underline"
       >
         Forgot your password?
-      </a>
+      </Link>
+
       <a
         href="/signup"
         className="block mt-4 text-center text-sm font-medium text-red-500 hover:underline"

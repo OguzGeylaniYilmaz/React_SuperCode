@@ -9,6 +9,9 @@ import { UserProvider } from "./context/UserContext";
 import SignUp from "./pages/SignUp";
 import UserProfile from "./components/UserProfile";
 
+import NotFound from "./pages/NotFound";
+import ForgetPassword from "./pages/ForgetPassword";
+
 const App = () => {
   return (
     <UserProvider>
@@ -21,20 +24,8 @@ const App = () => {
         <Route path="/login" element={<Login />} />
         <Route path="/signup" element={<SignUp />} />
         <Route path="/userprofile" element={<UserProfile />} />
-        <Route
-          path="*"
-          element={
-            <h1
-              style={{
-                textAlign: "center",
-                fontSize: "50px",
-                color: "red",
-              }}
-            >
-              Page not found (404)
-            </h1>
-          }
-        />
+        <Route path="/forgetpassword" element={<ForgetPassword />} />
+        <Route path="*" element={<NotFound />} />
       </Routes>
     </UserProvider>
   );
